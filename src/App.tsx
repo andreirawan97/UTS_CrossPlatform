@@ -77,7 +77,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <IonApp>
+    <IonApp title="Toko Mario">
       <IonReactRouter>
         <IonSplitPane contentId="main">
           <Menu />
