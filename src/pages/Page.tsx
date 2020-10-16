@@ -1,12 +1,26 @@
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import React from 'react';
-import { useParams } from 'react-router';
-import ExploreContainer from '../components/ExploreContainer';
-import './Page.css';
+import {
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonMenuButton,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/react";
+import { addOutline } from "ionicons/icons";
+import React from "react";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
-const Page: React.FC = () => {
+import ExploreContainer from "../components/ExploreContainer";
+import { CustomRedux } from "../types/CustomRedux";
+import "./Page.css";
 
-  const { name } = useParams<{ name: string; }>();
+type Props = {} & CustomRedux;
+
+const Page: React.FC<Props> = (props) => {
+  const { name } = useParams<{ name: string }>();
 
   return (
     <IonPage>
@@ -25,7 +39,7 @@ const Page: React.FC = () => {
             <IonTitle size="large">{name}</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name={name} />
+        <ExploreContainer name={name} {...props} />
       </IonContent>
     </IonPage>
   );

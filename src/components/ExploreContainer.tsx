@@ -1,15 +1,41 @@
-import React from 'react';
-import './ExploreContainer.css';
+import React from "react";
+import { CustomRedux } from "../types/CustomRedux";
+import AboutAppContent from "./drawer/AboutAppContent";
+import AdminContent from "./drawer/AdminContent";
+import HomeContent from "./drawer/HomeContent";
 
-interface ContainerProps {
+import "./ExploreContainer.css";
+
+type Props = {
   name: string;
-}
+} & CustomRedux;
 
-const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
+const ExploreContainer: React.FC<Props> = (props) => {
+  const { name } = props;
+
   return (
     <div className="container">
-      <strong>{name}</strong>
-      <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+      {name === "Home" ? (
+        <HomeContent
+          getItemFromStore={props.getItemFromStore}
+          getAllItemFromStore={props.getAllItemFromStore}
+          addNewItemToStore={props.addNewItemToStore}
+          deleteItemFromStore={props.deleteItemFromStore}
+          getItemFromStoreByIndex={props.getItemFromStoreByIndex}
+          editItemToStore={props.editItemToStore}
+        />
+      ) : name === "Admin" ? (
+        <AdminContent
+          getItemFromStore={props.getItemFromStore}
+          getAllItemFromStore={props.getAllItemFromStore}
+          addNewItemToStore={props.addNewItemToStore}
+          deleteItemFromStore={props.deleteItemFromStore}
+          getItemFromStoreByIndex={props.getItemFromStoreByIndex}
+          editItemToStore={props.editItemToStore}
+        />
+      ) : (
+        <AboutAppContent />
+      )}
     </div>
   );
 };
